@@ -1,0 +1,22 @@
+package com.vehicles.api.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.vehicles.api.model.Vehicles;
+import com.vehicles.api.repository.VehiclesRepository;
+
+@Service
+public class VehiclesfindById {
+	
+	@Autowired 
+	private VehiclesRepository repository;  
+
+	public Vehicles findById(Integer id) {
+		Optional<Vehicles> obj = repository.findById(id);
+		return obj.orElse(null);
+	}
+
+}

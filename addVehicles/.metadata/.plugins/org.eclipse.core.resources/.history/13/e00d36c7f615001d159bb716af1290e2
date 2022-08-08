@@ -1,0 +1,36 @@
+package com.vehicles.api.dto;
+
+import java.util.Date;
+
+import com.vehicles.api.enums.VehicleBrand;
+import com.vehicles.api.model.Vehicles;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class VehiclesDTO {
+
+	private Long id; 
+	private String veiculo; 
+	private VehicleBrand marca;
+	private int ano; 
+	private String descricao; 
+	private boolean vendido; 
+	private Date created; 
+	private Date updated;
+	
+	public VehiclesDTO(Vehicles obj) {
+		this.id = obj.getId();
+		this.veiculo = obj.getVeiculo();
+		this.marca = obj.getMarca();
+		this.ano = obj.getAno();
+		this.vendido = obj.isVendido();
+		this.descricao = obj.getDescricao();
+		this.created = obj.getCreated();
+		this.updated = obj.getUpdated();
+	}
+	
+	
+}

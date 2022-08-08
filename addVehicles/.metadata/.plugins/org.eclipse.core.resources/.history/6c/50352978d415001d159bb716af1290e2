@@ -1,0 +1,50 @@
+package com.vehicles.api.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vehicles.api.model.Vehicles;
+import com.vehicles.api.repository.VehiclesRepository;
+import com.vehicles.api.service.VehiclesfindById;
+
+@RestController
+@RequestMapping(value = "/veiculos")
+public class VehiclesController {
+	
+	@Autowired
+	private VehiclesRepository vehiclesRepository;
+	
+	@Autowired
+	private VehiclesfindById service; 
+	
+	// lista todos os veiculos 
+	@GetMapping
+	public List<Vehicles> listVehicles() {
+		return vehiclesRepository.findAll();
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Vehicles> findById(@PathVariable Integer id) {
+		Vehicles obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+
+	
+	
+	@PostMapping
+	public Vehicles add(@RequestBody Vehicles vehicle) {
+		return vehiclesRepository.save(vehicle);
+	}
+	
+
+
+}

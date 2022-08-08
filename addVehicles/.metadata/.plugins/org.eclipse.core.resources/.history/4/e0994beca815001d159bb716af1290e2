@@ -1,0 +1,5 @@
+package com.vehicles.api.controller;
+
+public class VehiclesController {
+
+}

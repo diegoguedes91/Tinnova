@@ -1,0 +1,5 @@
+package com.vehicles.api.repository;
+
+public interface VehiclesRepository {
+
+}

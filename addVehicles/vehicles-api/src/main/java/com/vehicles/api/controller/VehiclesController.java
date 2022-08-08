@@ -1,0 +1,67 @@
+package com.vehicles.api.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vehicles.api.dto.VehiclesDTO;
+import com.vehicles.api.model.Vehicles;
+import com.vehicles.api.repository.VehiclesRepository;
+import com.vehicles.api.service.VehiclesServices;
+
+@RestController
+@RequestMapping(value = "/veiculos")
+public class VehiclesController {
+	
+	@Autowired
+	private VehiclesRepository vehiclesRepository;
+	
+	
+	@Autowired
+	private VehiclesServices service; 
+	
+	// lista todos os veiculos 
+	@GetMapping
+	public List<Vehicles> listVehicles() {
+		return vehiclesRepository.findAll();
+	}
+	
+	// faz a pesquisa do veiculo por ID
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Vehicles> findById(@PathVariable Long id) {
+		Vehicles obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+
+	// adicionar um novo veiculo
+	@PostMapping
+	public Vehicles add(@RequestBody Vehicles vehicle) {
+		return vehiclesRepository.save(vehicle);
+	}
+	
+	// atualiza os valores
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<VehiclesDTO> update(@PathVariable Long id, @RequestBody VehiclesDTO objDto){
+		Vehicles newObj = service.update(id, objDto);
+		return ResponseEntity.ok().body(new VehiclesDTO(newObj));
+	}
+	
+
+	
+	// deleta os arquivos
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+
+}

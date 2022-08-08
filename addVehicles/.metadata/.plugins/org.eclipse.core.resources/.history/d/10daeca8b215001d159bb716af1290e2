@@ -1,0 +1,5 @@
+package com.vehicles.api.enums;
+
+public enum VehicleBrand {
+
+}

@@ -1,0 +1,5 @@
+package com.vehicles.api.model;
+
+public class Vehicles {
+
+}
