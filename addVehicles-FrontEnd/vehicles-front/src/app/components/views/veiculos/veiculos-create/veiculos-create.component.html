@@ -1,0 +1,27 @@
+<form>
+    <h1>Cadastrar veículo</h1>
+
+    <mat-form-field class="form">
+        <mat-label>Carro</mat-label>
+        <input matInput [(ngModel)]="veiculos.veiculo" type="text" name="carro">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Marca</mat-label>
+        <input matInput [(ngModel)]="veiculos.marca" type="text" name="marca">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Ano</mat-label>
+        <input matInput [(ngModel)]="veiculos.ano" type="number" name="ano">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Descricao</mat-label>
+        <input matInput [(ngModel)]="veiculos.descricao" type="text" name="descricao">
+    </mat-form-field>
+
+    <div class="buttons">
+        <button (click)="create()" class="mat-elevation-z8" mat-stroked-button color="primary">Adicionar</button>
+    </div>
+</form>
